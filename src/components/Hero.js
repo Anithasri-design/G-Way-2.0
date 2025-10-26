@@ -1,70 +1,74 @@
-import React from "react";
-import { CheckCircle, ArrowRight } from "lucide-react";
-import h3 from '../assets/h3.jpg';  // adjust path
+import React from 'react';
 
-export default function HeroSection() {
+export default function GWayLandingPage() {
+
   return (
-    <section className="bg-gray-50 py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        {/* Left Content */}
-        <div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-            <span className="text-sky-600">Real-time and</span> <br />
-            <span className="text-sky-500">Reliable</span> <br />
-            <span className="text-gray-900">Healthcare Support</span>
-          </h1>
-
-          <p className="text-gray-600 mt-6 text-lg">
-            Delivering excellence to hospitals, clinics, and diagnostic labs with 
-            end-to-end quality and accreditation solutions.
-          </p>
-
-          {/* Features List */}
-          <ul className="mt-6 space-y-3 text-gray-800">
-            <li className="flex items-center gap-2">
-              <CheckCircle className="text-green-500" size={20} /> 
-              NABH & NABL Accreditation Expertise
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle className="text-green-500" size={20} /> 
-              Expert Guidance from Industry Professionals
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle className="text-green-500" size={20} /> 
-              Post-accreditation Support & Maintenance
-            </li>
-          </ul>
-
-          {/* CTA Button */}
-          <div className="mt-8">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg font-medium shadow-md transition"
-            >
-              Request for Consultation <ArrowRight size={18} />
-            </a>
-          </div>
+    <div className="min-h-screen">
+      {/* Hero Section with Curved Design */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Left Side - White Background */}
+        <div className="absolute inset-0 bg-white">
+          {/* Curved Shape */}
+          <svg 
+            className="absolute top-0 right-0 h-full w-1/2 lg:w-2/5" 
+            viewBox="0 0 100 100" 
+            preserveAspectRatio="none"
+          >
+            <path 
+              d="M 30 0 Q 0 50 30 100 L 100 100 L 100 0 Z" 
+              fill="url(#curveGradient)" 
+              opacity="0.95"
+            />
+            <defs>
+              <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: '#0e7490', stopOpacity: 0.9 }} />
+                <stop offset="100%" style={{ stopColor: '#155e75', stopOpacity: 0.95 }} />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
 
-        {/* Right Image */}
-        <div className="relative">
+        {/* Background Image (Right Side) */}
+        <div className="absolute top-0 right-0 h-full w-1/2 lg:w-2/5">
           <img
-            src={h3}
-            alt="Healthcare Support"
-            className="rounded-2xl shadow-lg w-full object-cover"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070"
+            alt="Healthcare Team Meeting"
+            className="w-full h-full object-cover opacity-30"
           />
-          {/* Badge */}
-          <div className="absolute bottom-4 left-4 bg-white p-4 rounded-xl shadow-md flex items-center gap-3">
-            <CheckCircle className="text-green-500" size={28} />
-            <div>
-              <p className="font-semibold text-gray-800">Quality Assured</p>
-              <p className="text-sm text-gray-500">Certified Excellence</p>
-            </div>
-          </div>
         </div>
 
-      </div>
-    </section>
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full py-16">
+            
+            {/* Left Content */}
+            <div className="space-y-6 lg:space-y-8">
+              {/* Heading */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">Real-time and Reliable</span>
+                <br />
+                <span className="text-gray-900">Healthcare Support</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
+                Delivering excellence to hospitals, clinics, and diagnostic labs with end-to-end quality and accreditation solutions.
+              </p>
+
+              {/* CTA Button */}
+              <div className="pt-4">
+                <button className="bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 text-white px-10 py-2 rounded-full font-semibold shadow-lg transition-all hover:shadow-xl text-lg">
+                  Request for Consultation
+                </button>
+              </div>
+            </div>
+
+            {/* Right Side - Empty space for curved background */}
+            <div className="hidden lg:block relative"></div>
+          </div>
+        </div>
+      </section>
+
+      
+    </div>
   );
 }

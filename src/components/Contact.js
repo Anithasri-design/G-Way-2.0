@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,37 @@ export default function ContactPage() {
     service: '',
     message: ''
   });
+
+  // Set up scroll functionality when component mounts
+  useEffect(() => {
+    // Create a function that scrolls to contact section
+    const scrollToContact = () => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        const headerOffset = 80; // Height of sticky header
+        const elementPosition = contactSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    // Make it available globally
+    window.scrollToContactSection = scrollToContact;
+
+    // Check if hash is present on page load
+    if (window.location.hash === '#contact') {
+      setTimeout(() => scrollToContact(), 100);
+    }
+
+    // Cleanup
+    return () => {
+      delete window.scrollToContactSection;
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,14 +53,23 @@ export default function ContactPage() {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Message sent successfully!');
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      organization: '',
+      service: '',
+      message: ''
+    });
   };
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="py-12 px-4">
+      {/* Contact Section Header */}
+      <div id="contact-section" className="py-12 px-4 bg-white scroll-mt-20">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4 text-sky-600">Contact us</h1>
+          <h2 className="text-4xl font-bold mb-4 text-sky-600">Contact us</h2>
+          <p className="text-gray-600">Fill out the form below and we'll get back to you within 24 hours</p>
         </div>
       </div>
 
@@ -39,7 +79,7 @@ export default function ContactPage() {
           
           {/* Get in Touch Section */}
           <div className="md:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-800 mb-6">Get in touch</h2>
               
               {/* Phone */}
@@ -49,8 +89,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
-                  <a href="tel:+918098701666" className="text-blue-600 hover:underline">
-                    +91 8098701666
+                  <a href="tel:+918098716444" className="text-blue-600 hover:underline">
+                    +91 8098716444
                   </a>
                   <p className="text-sm text-gray-500 mt-1">Mon-Fri 9:00 AM - 6:00 PM</p>
                 </div>
@@ -93,14 +133,12 @@ export default function ContactPage() {
                   <p className="text-gray-600">Saturday: 9:00 AM - 2:00 PM</p>
                 </div>
               </div>
-
-
             </div>
           </div>
 
           {/* Send Message Form */}
           <div className="md:col-span-3">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
               
               <form onSubmit={handleSubmit}>
@@ -176,7 +214,7 @@ export default function ContactPage() {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white"
                     required
                   >
                     <option value="">Select a service</option>
@@ -202,7 +240,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold py-4 rounded-lg transition flex items-center justify-center gap-2 shadow-md"
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-lg transition flex items-center justify-center gap-2 shadow-md"
                 >
                   <Mail className="w-5 h-5" />
                   Send Message
@@ -212,6 +250,13 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-50 border-t border-gray-200 py-8 mt-12">
+        <div className="max-w-6xl mx-auto px-4 text-center text-gray-600">
+          <p>&copy; 2025 G-Way Healthcare Solutions. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }

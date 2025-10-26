@@ -72,7 +72,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-white to-blue-50 py-16 px-6">
+    <section id="services-section" className="w-full bg-gradient-to-b from-white to-blue-50 py-16 px-6">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
           <span className="bg-gradient-to-r from-sky-500 to-blue-600 text-transparent bg-clip-text">

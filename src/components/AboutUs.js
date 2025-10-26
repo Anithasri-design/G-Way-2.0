@@ -3,7 +3,7 @@ import h2 from "../assets/h2.jpg"; // adjust path if needed
 
 const AboutUs = () => {
   return (
-    <section className="bg-gray-50 py-12 px-6 lg:px-20">
+    <section id="about-section" className="bg-gray-50 py-12 px-6 lg:px-20">
       <div className="grid lg:grid-cols-2 gap-10 items-center">
         
         {/* Left Side - Image */}
@@ -75,9 +75,6 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
-
-          {/* Gradient Button */}
-         
         </div>
       </div>
     </section>
