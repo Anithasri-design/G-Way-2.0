@@ -15,24 +15,29 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Wait for page to fully load
+    const minimumLoadTime = 1500; // Show loader for at least 1.5 seconds
+    const startTime = Date.now();
+
     const handleLoad = () => {
-      setLoading(false);
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minimumLoadTime - elapsedTime);
+      
+      setTimeout(() => {
+        setLoading(false);
+      }, remainingTime);
     };
 
-    // Check if page is already loaded
     if (document.readyState === 'complete') {
-      setLoading(false);
+      handleLoad();
     } else {
       window.addEventListener('load', handleLoad);
     }
 
-    // Fallback timeout (max 3 seconds)
+    // Fallback timeout
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
 
-    // Cleanup
     return () => {
       window.removeEventListener('load', handleLoad);
       clearTimeout(timer);
